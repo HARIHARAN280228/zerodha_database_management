@@ -114,3 +114,35 @@ values
 ('aa99','itc','hotal','largecap'),
 ('aa00','bandhan','bank','midcap'),
 ('aa00','tatastell','stell','midcap');
+
+SELECT mp.surename, mp.email_id, f.account_value, c.current_value
+FROM my_profile mp
+INNER JOIN fund f ON mp.demat_accountnumber = f.demat_accountnumber
+INNER JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber;
+
+SELECT mp.surename, mp.email_id, f.account_value, c.current_value
+FROM my_profile mp
+LEFT JOIN fund f ON mp.demat_accountnumber = f.demat_accountnumber
+LEFT JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber;
+
+SELECT mp.surename, f.account_value, c.current_value
+FROM fund f
+RIGHT JOIN my_profile mp ON f.demat_accountnumber = mp.demat_accountnumber
+RIGHT JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber;
+
+
+SELECT mp.surename, s.stock
+FROM my_profile mp
+CROSS JOIN stock s;
+
+SELECT mp.surename, mp.email_id, f.account_value, c.current_value
+FROM my_profile mp
+LEFT JOIN fund f ON mp.demat_accountnumber = f.demat_accountnumber
+LEFT JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber
+
+UNION
+
+SELECT mp.surename, mp.email_id, f.account_value, c.current_value
+FROM my_profile mp
+RIGHT JOIN fund f ON mp.demat_accountnumber = f.demat_accountnumber
+RIGHT JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber;

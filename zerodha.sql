@@ -146,3 +146,44 @@ SELECT mp.surename, mp.email_id, f.account_value, c.current_value
 FROM my_profile mp
 RIGHT JOIN fund f ON mp.demat_accountnumber = f.demat_accountnumber
 RIGHT JOIN console c ON mp.demat_accountnumber = c.demat_accountnumber;
+
+
+SELECT sector, COUNT(*)AS total_stocks
+FROM stock
+group by sector;
+
+
+SET sql_safe_updates = 1;
+
+
+UPDATE my_profile
+SET email_id = 'kavidas43@gamil.com'
+WHERE email_id= 'priya43@gmail.com';
+ 
+update my_profile
+set nominee_id ='4544'
+where demat_accountnumber ='aa88'
+
+SET sql_safe_updates = 0;
+
+select * FROM my_profile
+
+delimiter //
+
+create procedure profile_details()
+begin
+    select mp.surename,
+           mp.pan_number,
+           mp.demat_accountnumber,
+           f.account_value,
+           c.current_value,
+           s.stock
+    from my_profile mp
+    join fund f ON mp.demat_accountnumber = f.demat_accountnumber
+    join console c ON mp.demat_accountnumber = c.demat_accountnumber
+    join stock s ON mp.demat_accountnumber = s.demat_accountnumber;
+end //
+
+delimiter ;
+
+call  profile_details();

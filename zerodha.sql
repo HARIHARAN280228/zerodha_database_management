@@ -157,8 +157,14 @@ SET sql_safe_updates = 1;
 
 
 UPDATE my_profile
-SET email_id = 'kavidas43@gamil.com'
-WHERE email_id= 'priya43@gmail.com';
+SET email_id = 'kalai223@gamil.com'
+WHERE email_id= 'aarthi33@gmail.com';
+
+UPDATE my_profile
+SET surename ='sriram'
+WHERE email_id= 'sriram22@gmail.com';
+ 
+
  
 update my_profile
 set nominee_id ='4544'
@@ -176,12 +182,12 @@ begin
            mp.pan_number,
            mp.demat_accountnumber,
            f.account_value,
-           c.current_value,
-           s.stock
+           c.current_value
+ 
     from my_profile mp
     join fund f ON mp.demat_accountnumber = f.demat_accountnumber
-    join console c ON mp.demat_accountnumber = c.demat_accountnumber
-    join stock s ON mp.demat_accountnumber = s.demat_accountnumber;
+    join console c ON mp.demat_accountnumber = c.demat_accountnumber;
+   
 end //
 
 delimiter ;
